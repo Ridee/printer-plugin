@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.jinn.printer"
+        version="0.1.0">
+
+    <name>PrinterPlugin</name>
+    <description>IMP006 printer plugin</description>
+    <license>MIT</license>
+    <keywords>cordova, IMP006, POS58, printer, bluetooth</keywords>
+
+    <js-module src="www/printerPlugin.js" name="PrinterPlugin">
+      <clobbers target="printPlug" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="PrinterPlugin">
+          <param name="android-package" value="com.jinn.plugins.PrinterPlugin"/>
+          </feature>
+      </config-file>
+
+      <source-file src="src/android/libs/android-support-v4.jar" target-dir="libs" framework="true"/>
+      <source-file src="src/android/libs/btsdk.jar" target-dir="libs" framework="true" />
+
+      <source-file src="src/android/PrinterPlugin.java" target-dir="src/com/jinn/plugins" />
+
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+      </config-file>
+    </platform>
+</plugin>
+
